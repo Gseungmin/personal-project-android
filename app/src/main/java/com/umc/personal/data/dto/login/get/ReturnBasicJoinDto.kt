@@ -12,6 +12,4 @@ data class ReturnBasicJoinDto (
         var email : String?="",
         @SerializedName("isTrue")
         var isTrue : Boolean?=false,
-        @SerializedName("accessToken")
-        val accessToken : String?="",
 )

@@ -21,6 +21,7 @@ import com.umc.personal.ui.viewmodel.JoinViewModel
 import java.util.regex.Pattern
 
 class JoinFragment : Fragment() {
+
     private var _binding : FragmentJoinBinding? = null
     private val binding get() = _binding!!
 

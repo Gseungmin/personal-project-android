@@ -36,8 +36,7 @@ class JoinViewModel() : ViewModel() {
             override fun onResponse(call: Call<ReturnBasicJoinDto>, response: Response<ReturnBasicJoinDto>) {
                 if (response.isSuccessful) {
                     Log.d("RESPONSE", response.body().toString())
-                    setAccessToken("Bearer " + response.body()!!.accessToken.toString())
-                    _join_state.postValue(true)
+                    _join_state.postValue(response.body()?.isTrue ?: false)
                 } else {
                     Log.d("RESPONSE", "FAIL")
                 }
