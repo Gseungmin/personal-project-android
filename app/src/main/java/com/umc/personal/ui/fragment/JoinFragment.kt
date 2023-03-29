@@ -14,12 +14,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.umc.personal.R
+import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.databinding.FragmentJoinBinding
+import com.umc.personal.ui.activity.MainActivity
+import com.umc.personal.ui.viewmodel.JoinViewModel
 import java.util.regex.Pattern
 
 class JoinFragment : Fragment() {
     private var _binding : FragmentJoinBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<JoinViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +43,26 @@ class JoinFragment : Fragment() {
         //email 입력칸으로 이동
         back_to_login()
 
+        //옵저버 패턴 관리
+        observer()
+
         return view
+    }
+
+    /**observer pattern*/
+    private fun observer() {
+
+        //회원가입시 받은 데이터
+        viewModel.join_state.observe(viewLifecycleOwner) {
+            if (it == true) {
+                Handler(Looper.myLooper()!!).postDelayed({
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
+                }, 300)
+            } else {
+                dialog()
+            }
+        }
     }
 
     /**login fragment로 이동*/
@@ -52,51 +76,34 @@ class JoinFragment : Fragment() {
     /**회원가입 유효성 체크*/
     private fun validation() {
 
-//        /**회원가입 체크 체크*/
-//        binding.join.setOnClickListener {
-//
-//            val basicJoinDto = BasicJoinDto(binding.nickname.text.toString(), get_email.email,
-//                binding.password.text.toString(), binding.phone.text.toString())
-//
-//            //join
-//            viewModel.join(basicJoinDto)
-//
-//            viewModel.join_state.observe(viewLifecycleOwner) {
-//                if (it == true) {
-//                    Handler(Looper.myLooper()!!).postDelayed({
-//                        startActivity(Intent(requireContext(), MainActivity::class.java))
-//                        requireActivity().finish()
-//                    }, 300)
-//                }
-//            }
-//
-//            /**닉네임 체크*/
-//            if (binding.nickname.text.toString() == "" || binding.nickname.text.isEmpty()) {
-//                //닉네임이 올바르게 입력되지 않음
-//                not_proper_nickname()
-//            } else {
-//                //닉네임이 올바르게 입력됨
-//                proper_nickname()
-//            }
-//
-//            /**비밀번호 로직*/
-//            if (Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\$@\$!%*#?&]).{8,15}.\$", binding.password.text)) {
-//                //패스워드가 올바르게 입력되었지만 이미 존재하는 회원인지 확인하는 로직
-//                proper_password()
-//
-//                /**재확인 비밀먼호 로직* */
-//                if (binding.password.text.toString() == binding.passwordRetry.text.toString()) {
-//                    //비밀번호와 재확인 비밀번호가 일치함
-//                    proper_retry_password()
-//                } else {
-//                    //비밀번호와 재확인 비밀번호가 일치하지 않음
-//                    not_proper_retry_password()
-//                }
-//            } else {
-//                //비밀번호가 올바르게 입력되지 않음
-//                not_proper_password()
-//            }
-//        }
+        /**회원가입 체크 체크*/
+        binding.join.setOnClickListener {
+
+            //객체 생성
+            val basicJoinDto = BasicJoinDto(
+                binding.nickname.text.toString(),
+                binding.email.text.toString(),
+                binding.password.text.toString())
+
+            //join
+            viewModel.join(basicJoinDto)
+
+            /**닉네임 체크*/
+            if (binding.nickname.text.toString() == "" || binding.nickname.text.isEmpty()) {
+            } else {
+            }
+
+            /**비밀번호 로직*/
+            if (Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\$@\$!%*#?&]).{8,15}.\$", binding.password.text)) {
+                //패스워드가 올바르게 입력되었지만 이미 존재하는 회원인지 확인하는 로직
+
+                /**재확인 비밀먼호 로직* */
+                if (binding.password.text.toString() == binding.passwordRetry.text.toString()) {
+                } else {
+                }
+            } else {
+            }
+        }
     }
 
     /**dialog를 보여주는 메소드*/
@@ -111,7 +118,7 @@ class JoinFragment : Fragment() {
         val back_to_login = alertDialog.findViewById<TextView>(R.id.back_fragment)
         val email = alertDialog.findViewById<TextView>(R.id.email_name)
 
-//        email.text = viewModel.phone_auth.value!!.email
+        email.text = binding.email.text
 
         dialog_cancel.setOnClickListener {
             alertDialog.cancel()
