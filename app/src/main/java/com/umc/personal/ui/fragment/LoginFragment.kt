@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.umc.personal.R
 import com.umc.personal.databinding.FragmentLoginBinding
 import java.util.regex.Pattern
 
@@ -54,7 +56,8 @@ class LoginFragment : Fragment() {
 
         //회원가입 화면으로 이동
         binding.joinButton.setOnClickListener {
-            
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_loginFragment_to_joinFragment)
         }
     }
 
