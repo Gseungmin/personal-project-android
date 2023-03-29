@@ -87,22 +87,6 @@ class JoinFragment : Fragment() {
 
             //join
             viewModel.join(basicJoinDto)
-
-            /**닉네임 체크*/
-            if (binding.nickname.text.toString() == "" || binding.nickname.text.isEmpty()) {
-            } else {
-            }
-
-            /**비밀번호 로직*/
-            if (Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\$@\$!%*#?&]).{8,15}.\$", binding.password.text)) {
-                //패스워드가 올바르게 입력되었지만 이미 존재하는 회원인지 확인하는 로직
-
-                /**재확인 비밀먼호 로직* */
-                if (binding.password.text.toString() == binding.passwordRetry.text.toString()) {
-                } else {
-                }
-            } else {
-            }
         }
     }
 
