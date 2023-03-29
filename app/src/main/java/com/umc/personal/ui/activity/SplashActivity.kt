@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.umc.personal.databinding.ActivityMainBinding
+import androidx.activity.viewModels
 import com.umc.personal.databinding.ActivitySplashBinding
+import com.umc.personal.ui.viewmodel.CheckTokenViewModel
 
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
+    private val viewModel by viewModels<CheckTokenViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +21,20 @@ class SplashActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        Handler(Looper.myLooper()!!).postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }, 1500)
+        viewModel.checkAccessToken()
+
+        viewModel.accessToken.observe(this) {
+            if (it == false) {
+                Handler(Looper.myLooper()!!).postDelayed({
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }, 1500)
+            } else {
+                Handler(Looper.myLooper()!!).postDelayed({
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }, 1500)
+            }
+        }
     }
 }

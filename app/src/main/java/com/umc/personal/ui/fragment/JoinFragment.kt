@@ -56,10 +56,8 @@ class JoinFragment : Fragment() {
         //회원가입시 받은 데이터
         viewModel.join_state.observe(viewLifecycleOwner) {
             if (it == true) {
-                Handler(Looper.myLooper()!!).postDelayed({
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
-                    requireActivity().finish()
-                }, 300)
+                Navigation.findNavController(binding.root)
+                    .navigate(R.id.action_joinFragment_to_loginFragment)
             } else {
                 dialog()
             }

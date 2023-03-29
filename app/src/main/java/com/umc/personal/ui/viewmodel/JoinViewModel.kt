@@ -46,12 +46,4 @@ class JoinViewModel() : ViewModel() {
             }
         })
     }
-
-    /**
-     * 로그인 시 엑세스 토큰 저장
-     * */
-    fun setAccessToken(token : String) = viewModelScope.launch {
-        Log.d("setTokenValue", token)
-        AccessTokenDataStore().setAccessToken(token)
-    }
 }

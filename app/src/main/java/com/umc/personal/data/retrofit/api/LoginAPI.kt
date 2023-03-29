@@ -32,7 +32,7 @@ interface LoginAPI {
      * */
     @POST("/login")
     @Headers("content-type: application/json")
-    fun basic_login(@Header("LoginCase") case: String, basicLoginDto: BasicLoginDto):Call<ResponseBody>
+    fun basic_login(@Header("LoginCase") case: String, @Body basicLoginDto: BasicLoginDto):Call<ResponseBody>
 
     /**
      * @Post
