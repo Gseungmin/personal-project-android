@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:background="@drawable/join_fragment_dialog_background">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이미 가입한 계정이 있어요!"
+        android:layout_gravity="center"
+        android:fontFamily="@font/light"
+        android:textSize="11sp"
+        android:textColor="@color/approval_please_black_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/email_name"
+            android:layout_marginStart="8dp"
+            android:text="f***0526@n***r.com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/approval_please_black_color"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BFBFBF">
+    </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="취소"
+            android:fontFamily="@font/bold"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            android:textColor="@color/approval_please_bold_gray_color" />
+
+        <ImageView
+            android:layout_weight="2"
+            android:src="@drawable/join_fragment_dialog_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/back_fragment"
+            android:text="로그인 화면으로 돌아가기"
+            android:textAlignment="center"
+            android:fontFamily="@font/bold"
+            android:textSize="11sp"
+            android:textColor="@color/approval_please_main_color"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+    </LinearLayout>
+
+
+</LinearLayout>

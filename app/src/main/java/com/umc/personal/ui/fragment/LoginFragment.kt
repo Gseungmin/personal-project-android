@@ -28,6 +28,9 @@ class LoginFragment : Fragment() {
         //이메일 유효성 검사
         validate_email()
 
+        //회원가입 화면으로 이동
+        join()
+
         return view
     }
 
@@ -44,6 +47,14 @@ class LoginFragment : Fragment() {
 
             if (pattern.matcher(email).matches()) {
             }
+        }
+    }
+
+    private fun join() {
+
+        //회원가입 화면으로 이동
+        binding.joinButton.setOnClickListener {
+            
         }
     }
 

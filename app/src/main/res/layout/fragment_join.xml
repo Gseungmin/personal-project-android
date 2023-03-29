@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.JoinFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/back_to_email_login"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/join_fragment_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/join_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:fontFamily="@font/bold"
+            android:textSize="13sp"
+            android:textColor="@color/approval_please_black_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--nickname-->
+    <TextView
+        android:id="@+id/nickname_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:src="@drawable/join_fragment_nickname"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/approval_please_black_color"
+        android:textSize="13sp"
+        android:text="닉네임"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_container" />
+
+    <EditText
+        android:id="@+id/nickname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/login_activity_white_box"
+        android:hint="닉네임을 입력해주세요."
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:singleLine="true"
+        android:textColor="@color/approval_please_black_color"
+        android:textColorHint="@color/approval_please_medium_gray_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname_text" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/nickname_valid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:text="사용할 수 없는 닉네임입니다."
+        android:textColor="#FF0000"
+        android:textSize="11sp"
+        android:fontFamily="@font/medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+    <!--password-->
+    <TextView
+        android:id="@+id/password_text"
+        android:text="비밀번호"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/approval_please_black_color"
+        android:textSize="13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+    <EditText
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/login_activity_white_box"
+        android:hint="8자 이상 특수문자를 포함해 조합해 주세요."
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/approval_please_black_color"
+        android:textColorHint="@color/approval_please_medium_gray_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/password_valid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:text="8자 이상 특수문자 조합해 주세요."
+        android:textColor="#FF0000"
+        android:layout_marginTop="47dp"
+        android:textSize="11sp"
+        android:fontFamily="@font/medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/password" />
+
+
+    <EditText
+        android:inputType="textPassword"
+        android:id="@+id/password_retry"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/login_activity_white_box"
+        android:hint="비밀번호를 재확인해주세요."
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:singleLine="true"
+        android:textColor="@color/approval_please_black_color"
+        android:textColorHint="@color/approval_please_medium_gray_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/password_retry_valid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:text="비밀번호가 일치하지 않습니다."
+        android:textColor="#FF0000"
+        android:textSize="11sp"
+        android:fontFamily="@font/medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/password_retry"
+        android:layout_marginTop="47dp"/>
+
+    <!--email-->
+    <TextView
+        android:id="@+id/email_text"
+        android:text="이메일"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/approval_please_black_color"
+        android:textSize="13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_retry" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/login_activity_white_box"
+        android:hint="이메일 형식에 맞게 입력해주세요."
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/approval_please_black_color"
+        android:textColorHint="@color/approval_please_medium_gray_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_text" />
+
+
+    <TextView
+        android:id="@+id/phone_valid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:fontFamily="@font/medium"
+        android:text="이메일 형식이 올바르지 않습니다."
+        android:textColor="#FF0000"
+        android:textSize="11sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/join"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@color/approval_please_medium_gray_color"
+        android:fontFamily="@font/bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:layout_marginTop="10dp"
+        android:text="가입하기"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_valid" />
+</androidx.constraintlayout.widget.ConstraintLayout>
