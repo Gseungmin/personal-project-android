@@ -38,12 +38,12 @@ class LoginViewModel() : ViewModel() {
     val logoutSuccess : LiveData<Boolean>
         get() = _logoutSuccess
 
-    /**로그인 시 엑세스 토큰 저장*/
+    //로그인 시 엑세스 토큰 저장
     fun setAccessToken(token : String) = viewModelScope.launch {
         AccessTokenDataStore().setAccessToken(token)
     }
 
-    /**엑세스 토큰 삭제 메소드*/
+    //엑세스 토큰 삭제 메소드
     fun deleteAccessToken() = viewModelScope.launch {
         AccessTokenDataStore().deleteAccessToken()
     }
