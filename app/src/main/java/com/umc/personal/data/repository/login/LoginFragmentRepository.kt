@@ -19,11 +19,18 @@ class LoginFragmentRepository() {
     }
 
     /**
-     * Login
+     * basic login
      * */
     fun basic_login(basicLoginDto: BasicLoginDto): Call<ResponseBody> {
         return loginApi.basic_login(basicLoginDto.email.toString()
             , basicLoginDto.password.toString())
+    }
+
+    /**
+     * kakao login
+     * */
+    fun kakao_login(accessToken: String): Call<ResponseBody> {
+        return loginApi.kakao_login(accessToken)
     }
 
     /**

@@ -26,8 +26,7 @@ interface LoginAPI {
 
     /**
      * @Post
-     * Header LoginCase : basic
-     * BasicLoginDto
+     * email, password
      * @Get
      * Header Authorization : Bearer + 토크 값
      * */
@@ -35,6 +34,17 @@ interface LoginAPI {
     @Headers("content-type: application/json")
     fun basic_login(@Query("email") email: String,
                     @Query("password") password: String):Call<ResponseBody>
+
+    /**
+     * @Post
+     * Access Token
+     * @Get
+     * Header Authorization : Bearer + 토크 값
+     * */
+    @POST("/auth/kakao")
+    @Headers("content-type: application/json")
+    fun kakao_login(@Header("Authorization") accessToken: String):Call<ResponseBody>
+
     /**
      * @Post
      * Header Authorization : Bearer accessToken

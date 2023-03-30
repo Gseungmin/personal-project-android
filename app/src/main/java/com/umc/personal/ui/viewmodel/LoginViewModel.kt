@@ -48,9 +48,29 @@ class LoginViewModel() : ViewModel() {
         AccessTokenDataStore().deleteAccessToken()
     }
 
-    /**로그인 성공시 엑세스 토큰 발급*/
+    //일반 로그인 성공시 엑세스 토큰 발급 및 저장
     fun basic_login(basicLoginDto: BasicLoginDto) = viewModelScope.launch {
         val response = repository.basic_login(basicLoginDto)
+        response.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    _accessToken.value = response.headers().get("Authorization").toString()
+                    setAccessToken(accessToken.value.toString())
+                    _success.postValue(true)
+                } else {
+                    Log.d("RESPONSE", "FAIL")
+                    _success.postValue(false)
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.d("ContinueFail", "FAIL")
+            }
+        })
+    }
+
+    //카카오 로그인 성공시 엑세스 토큰 발급 및 저장
+    fun kako_login(token : String) = viewModelScope.launch {
+        val response = repository.kakao_login(token)
         response.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
