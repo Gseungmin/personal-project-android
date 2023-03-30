@@ -21,7 +21,15 @@ class LoginFragmentRepository() {
     /**
      * Login
      * */
-    fun basic_login(case: String, basicLoginDto: BasicLoginDto): Call<ResponseBody> {
-        return loginApi.basic_login(case, basicLoginDto)
+    fun basic_login(basicLoginDto: BasicLoginDto): Call<ResponseBody> {
+        return loginApi.basic_login(basicLoginDto.email.toString()
+            , basicLoginDto.password.toString())
+    }
+
+    /**
+     * Logout API
+     * */
+    fun logout(accessToken: String): Call<ResponseBody> {
+        return loginApi.logout(accessToken)
     }
 }

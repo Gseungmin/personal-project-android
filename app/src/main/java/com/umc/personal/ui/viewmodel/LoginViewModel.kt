@@ -9,7 +9,9 @@ import com.umc.personal.data.dto.login.get.ReturnBasicJoinDto
 import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.data.dto.login.post.BasicLoginDto
 import com.umc.personal.data.repository.login.LoginFragmentRepository
+import com.umc.personal.data.repository.token.AccessTokenRepository
 import com.umc.personal.dataStore.AccessTokenDataStore
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -32,9 +34,23 @@ class LoginViewModel() : ViewModel() {
     val success : LiveData<Boolean>
         get() = _success
 
+    private var _logoutSuccess = MutableLiveData<Boolean>()
+    val logoutSuccess : LiveData<Boolean>
+        get() = _logoutSuccess
+
+    /**로그인 시 엑세스 토큰 저장*/
+    fun setAccessToken(token : String) = viewModelScope.launch {
+        AccessTokenDataStore().setAccessToken(token)
+    }
+
+    /**엑세스 토큰 삭제 메소드*/
+    fun deleteAccessToken() = viewModelScope.launch {
+        AccessTokenDataStore().deleteAccessToken()
+    }
+
     /**로그인 성공시 엑세스 토큰 발급*/
     fun basic_login(basicLoginDto: BasicLoginDto) = viewModelScope.launch {
-        val response = repository.basic_login("basic", basicLoginDto)
+        val response = repository.basic_login(basicLoginDto)
         response.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
@@ -48,14 +64,31 @@ class LoginViewModel() : ViewModel() {
             }
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.d("ContinueFail", "FAIL")
-                _success.postValue(false)
             }
         })
     }
 
-    /**로그인 시 엑세스 토큰 저장*/
-    fun setAccessToken(token : String) = viewModelScope.launch {
-        Log.d("setTokenValue", token)
-        AccessTokenDataStore().setAccessToken(token)
+    /**
+     * 로그아웃
+     * */
+    fun logout() = viewModelScope.launch {
+
+        val tokenValue = AccessTokenDataStore().getAccessToken().first()
+
+        val response = repository.logout(tokenValue)
+        response.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    Log.d("RESPONSE", response.body().toString())
+                    deleteAccessToken()
+                    _logoutSuccess.postValue(true)
+                } else {
+                    Log.d("RESPONSE", "FAIL")
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.d("ContinueFail", "FAIL")
+            }
+        })
     }
 }

@@ -8,6 +8,7 @@ import android.os.Looper
 import androidx.activity.viewModels
 import com.umc.personal.databinding.ActivitySplashBinding
 import com.umc.personal.ui.viewmodel.CheckTokenViewModel
+import com.umc.personal.util.BlackToast
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,6 +23,10 @@ class SplashActivity : AppCompatActivity() {
         setContentView(view)
 
         viewModel.checkAccessToken()
+
+        viewModel.error.observe(this) {
+            BlackToast.createToast(this, "로그인을 먼저 해주세요").show()
+        }
 
         viewModel.accessToken.observe(this) {
             if (it == false) {

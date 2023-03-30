@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_mypage"
-        android:name="com.umc.personal.ui.fragment.mypageFragment"
+        android:name="com.umc.personal.ui.fragment.MypageFragment"
         android:label="fragment_mypage"
         tools:layout="@layout/fragment_mypage" >
         <action

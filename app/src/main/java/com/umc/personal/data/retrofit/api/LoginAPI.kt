@@ -9,6 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 /**
  * 로그인 및 회원가입 관련 기능 API
@@ -30,19 +31,15 @@ interface LoginAPI {
      * @Get
      * Header Authorization : Bearer + 토크 값
      * */
-    @POST("/login")
+    @POST("/auth/login")
     @Headers("content-type: application/json")
-    fun basic_login(@Header("LoginCase") case: String, @Body basicLoginDto: BasicLoginDto):Call<ResponseBody>
-
+    fun basic_login(@Query("email") email: String,
+                    @Query("password") password: String):Call<ResponseBody>
     /**
      * @Post
      * Header Authorization : Bearer accessToken
-     * Header LoginCase : google, kakao
-     * @Get
-     * Header Authorization : Bearer + 토크 값
      * */
-    @POST("/login")
+    @POST("/auth/logout")
     @Headers("content-type: application/json")
-    fun social_login(@Header("Authorization") accessToken:
-              String, @Header("LoginCase") case: String):Call<ResponseBody>
+    fun logout(@Header("Authorization") accessToken : String):Call<ResponseBody>
 }
