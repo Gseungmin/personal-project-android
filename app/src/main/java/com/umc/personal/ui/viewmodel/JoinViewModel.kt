@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.umc.personal.data.dto.error.ErrorDto
 import com.umc.personal.data.dto.login.get.ReturnBasicJoinDto
 import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.data.repository.login.LoginFragmentRepository
@@ -24,6 +25,11 @@ class JoinViewModel() : ViewModel() {
     private var _join_state = MutableLiveData<Boolean>()
     val join_state : LiveData<Boolean>
         get() = _join_state
+
+    //에러 라이브 데이터
+    private var _error = MutableLiveData<ErrorDto>()
+    val error : LiveData<ErrorDto>
+        get() = _error
 
     /**
      * 일반 회원가입
