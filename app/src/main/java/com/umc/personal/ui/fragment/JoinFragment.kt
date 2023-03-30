@@ -18,6 +18,7 @@ import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.databinding.FragmentJoinBinding
 import com.umc.personal.ui.activity.MainActivity
 import com.umc.personal.ui.viewmodel.JoinViewModel
+import com.umc.personal.util.BlackToast
 import java.util.regex.Pattern
 
 class JoinFragment : Fragment() {
@@ -46,6 +47,10 @@ class JoinFragment : Fragment() {
 
         //옵저버 패턴 관리
         observer()
+
+        viewModel.error.observe(requireActivity()) {
+            BlackToast.createToast(requireContext(), it.message.toString()).show()
+        }
 
         return view
     }

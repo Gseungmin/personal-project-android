@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.umc.personal.data.dto.error.ErrorDto
 import com.umc.personal.data.dto.login.get.ReturnBasicJoinDto
 import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.data.dto.login.post.BasicLoginDto
@@ -14,6 +15,7 @@ import com.umc.personal.dataStore.AccessTokenDataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,17 +40,22 @@ class LoginViewModel() : ViewModel() {
     val logoutSuccess : LiveData<Boolean>
         get() = _logoutSuccess
 
-    /**로그인 시 엑세스 토큰 저장*/
+    //에러 라이브 데이터
+    private var _error = MutableLiveData<ErrorDto>()
+    val error : LiveData<ErrorDto>
+        get() = _error
+
+    //로그인 시 엑세스 토큰 저장
     fun setAccessToken(token : String) = viewModelScope.launch {
         AccessTokenDataStore().setAccessToken(token)
     }
 
-    /**엑세스 토큰 삭제 메소드*/
+    //엑세스 토큰 삭제 메소드
     fun deleteAccessToken() = viewModelScope.launch {
         AccessTokenDataStore().deleteAccessToken()
     }
 
-    /**로그인 성공시 엑세스 토큰 발급*/
+    //일반 로그인 성공시 엑세스 토큰 발급 및 저장
     fun basic_login(basicLoginDto: BasicLoginDto) = viewModelScope.launch {
         val response = repository.basic_login(basicLoginDto)
         response.enqueue(object : Callback<ResponseBody> {
@@ -60,6 +67,32 @@ class LoginViewModel() : ViewModel() {
                 } else {
                     Log.d("RESPONSE", "FAIL")
                     _success.postValue(false)
+                    var jsonObject = JSONObject(response.errorBody()!!.string())
+                    _error.postValue(ErrorDto(
+                        jsonObject.getInt("code"), jsonObject.getString("message")))
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.d("ContinueFail", "FAIL")
+            }
+        })
+    }
+
+    //카카오 로그인 성공시 엑세스 토큰 발급 및 저장
+    fun kako_login(token : String) = viewModelScope.launch {
+        val response = repository.kakao_login(token)
+        response.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    _accessToken.value = response.headers().get("Authorization").toString()
+                    setAccessToken(accessToken.value.toString())
+                    _success.postValue(true)
+                } else {
+                    Log.d("RESPONSE", "FAIL")
+                    _success.postValue(false)
+                    var jsonObject = JSONObject(response.errorBody()!!.string())
+                    _error.postValue(ErrorDto(
+                        jsonObject.getInt("code"), jsonObject.getString("message")))
                 }
             }
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
