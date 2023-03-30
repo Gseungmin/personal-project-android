@@ -11,6 +11,7 @@ import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.data.repository.login.LoginFragmentRepository
 import com.umc.personal.dataStore.AccessTokenDataStore
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +46,9 @@ class JoinViewModel() : ViewModel() {
                     _join_state.postValue(response.body()?.isTrue ?: false)
                 } else {
                     Log.d("RESPONSE", "FAIL")
+                    var jsonObject = JSONObject(response.errorBody()!!.string())
+                    _error.postValue(ErrorDto(
+                        jsonObject.getInt("code"), jsonObject.getString("message")))
                 }
             }
             override fun onFailure(call: Call<ReturnBasicJoinDto>, t: Throwable) {

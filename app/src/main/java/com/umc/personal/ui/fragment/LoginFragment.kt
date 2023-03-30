@@ -26,6 +26,7 @@ import com.umc.personal.ui.activity.LoginActivity
 import com.umc.personal.ui.activity.MainActivity
 import com.umc.personal.ui.viewmodel.JoinViewModel
 import com.umc.personal.ui.viewmodel.LoginViewModel
+import com.umc.personal.util.BlackToast
 import java.util.regex.Pattern
 
 class LoginFragment : Fragment() {
@@ -58,6 +59,10 @@ class LoginFragment : Fragment() {
                 startActivity(Intent(requireActivity(), MainActivity::class.java))
                 requireActivity().finish()
             }
+        }
+
+        viewModel.error.observe(requireActivity()) {
+            BlackToast.createToast(requireContext(), it.message.toString()).show()
         }
 
         kakao_login()
