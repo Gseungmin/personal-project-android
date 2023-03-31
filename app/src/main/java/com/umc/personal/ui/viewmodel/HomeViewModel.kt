@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umc.personal.data.dto.home.HomeItemDto
 import com.umc.personal.data.repository.home.HomeFragmentRepository
+import com.umc.personal.dataStore.AccessTokenDataStore
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +28,11 @@ class HomeViewModel() : ViewModel() {
 
     //API 리포지토리
     private val repository = HomeFragmentRepository()
+
+    //검색어 쿼리
+    fun setQuery(query: String) = viewModelScope.launch {
+        _query.postValue(query)
+    }
 
     //모든 프로젝트 목록을 반환받는 API
     fun get_all_preject(query: String) = viewModelScope.launch {
