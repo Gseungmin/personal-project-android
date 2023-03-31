@@ -2,6 +2,7 @@ package com.umc.personal.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -70,10 +71,9 @@ class HomeFragment : Fragment() {
         //옵저버 패턴
         viewModel.all_list.observe(viewLifecycleOwner) {
 
-            val dataRVAdapter = HomeRVAdapter(it)
+            val dataRVAdapter = HomeRVAdapter(it.homeItem)
             binding.recentSearchRv.adapter = dataRVAdapter
-            binding.recentSearchRv.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
-
+            binding.recentSearchRv.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             // 클릭 이벤트 처리
             dataRVAdapter.setOnItemClickListener(object: HomeRVAdapter.OnItemClickListner {
                 override fun onItemClick(v: View, data: HomeItem, pos: Int) {
@@ -85,6 +85,11 @@ class HomeFragment : Fragment() {
                 }
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.get_all_preject(viewModel.query.value.toString())
     }
 
     //viewBinding이 더이상 필요 없을 경우 null 처리 필요

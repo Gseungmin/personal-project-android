@@ -45,6 +45,6 @@ object RetrofitInstance {
 
     /**upload api*/
     val projectAPI: ProjectAPI by lazy {
-        retrofit.create(projectAPI::class.java)
+        retrofit.create(ProjectAPI::class.java)
     }
 }

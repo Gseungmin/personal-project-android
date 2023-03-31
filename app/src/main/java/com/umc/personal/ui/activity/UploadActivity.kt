@@ -127,7 +127,9 @@ class UploadActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     //링크가 있을 경우
                     if (viewModel.opengraph.value != null) {
-                        uploadFile.opengraph = viewModel.opengraph.value
+                        uploadFile.linkTitle = viewModel.opengraph.value!!.title
+                        uploadFile.linkUrl = viewModel.opengraph.value!!.url
+                        uploadFile.linkImage = viewModel.opengraph.value!!.image
                     }
                     //사진이 있을 경우
                     if (viewModel.pic.value != null) {

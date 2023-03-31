@@ -11,8 +11,12 @@ data class ProjectUploadDto (
         var content : String? = null,
         @SerializedName("title")
         var title : String? = null,
-        @SerializedName("link")
-        var opengraph : OpenGraphDto? = null,
+        @SerializedName("linkTitle")
+        var linkTitle : String? = null,
+        @SerializedName("linkUrl")
+        var linkUrl : String? = null,
+        @SerializedName("linkImage")
+        var linkImage : String? = null,
         @SerializedName("image")
         var image : String? = null,
 )

@@ -1,6 +1,5 @@
 package com.umc.personal.ui.adapter.home
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,23 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.umc.personal.R
 import com.umc.personal.data.dto.home.get.HomeItem
-import com.umc.personal.data.dto.home.get.HomeItemDto
 import com.umc.personal.databinding.ItemHomeBinding
 
-class HomeRVAdapter(private val dataList: HomeItemDto): RecyclerView.Adapter<HomeRVAdapter.DataViewHolder>() {
+class HomeRVAdapter(private val dataList: List<HomeItem>): RecyclerView.Adapter<HomeRVAdapter.DataViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        val binding = ItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DataViewHolder(binding, parent.context)
+        val view = ItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DataViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.bind(dataList.homeItem[position])
+        holder.bind(dataList[position])
     }
 
-    override fun getItemCount(): Int = dataList.homeItem.size
+    override fun getItemCount(): Int {
+        return dataList.size
+    }
 
-    inner class DataViewHolder(private val binding: ItemHomeBinding, context: Context): RecyclerView.ViewHolder(binding.root) {
-        val context = context
+    inner class DataViewHolder(private val binding: ItemHomeBinding): RecyclerView.ViewHolder(binding.root) {
+
         fun bind(data: HomeItem) {
 
             //이미지 처리

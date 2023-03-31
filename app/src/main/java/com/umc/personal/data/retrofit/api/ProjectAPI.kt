@@ -1,6 +1,5 @@
 package com.umc.personal.data.retrofit.api
 
-import com.umc.personal.data.dto.home.get.HomeItemDto
 import com.umc.personal.data.dto.home.post.ProjectUploadDto
 import okhttp3.ResponseBody
 import retrofit2.Call
