@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.umc.personal.data.dto.home.get.HomeItem
 import com.umc.personal.databinding.FragmentHomeBinding
 import com.umc.personal.ui.activity.MainActivity
+import com.umc.personal.ui.activity.ProjectActivity
 import com.umc.personal.ui.activity.UploadActivity
 import com.umc.personal.ui.adapter.home.HomeRVAdapter
 import com.umc.personal.ui.viewmodel.HomeViewModel
@@ -79,7 +80,7 @@ class HomeFragment : Fragment() {
                 override fun onItemClick(v: View, data: HomeItem, pos: Int) {
 
                     //프로젝트 상세보기로 이동
-                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    val intent = Intent(requireContext(), ProjectActivity::class.java)
                     intent.putExtra("projectId", data.projectId.toString())
                     startActivity(intent)
                 }
