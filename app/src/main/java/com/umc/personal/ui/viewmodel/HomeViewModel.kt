@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.umc.personal.data.dto.home.HomeItemDto
+import com.umc.personal.data.dto.home.get.HomeItemDto
 import com.umc.personal.data.repository.home.HomeFragmentRepository
-import com.umc.personal.dataStore.AccessTokenDataStore
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

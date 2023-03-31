@@ -20,6 +20,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.UploadActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.activity.LoginActivity"
             android:exported="true">
             <meta-data
@@ -61,4 +68,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

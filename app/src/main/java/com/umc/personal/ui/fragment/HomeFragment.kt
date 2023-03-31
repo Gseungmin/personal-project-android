@@ -12,9 +12,10 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.personal.data.dto.home.HomeItem
+import com.umc.personal.data.dto.home.get.HomeItem
 import com.umc.personal.databinding.FragmentHomeBinding
 import com.umc.personal.ui.activity.MainActivity
+import com.umc.personal.ui.activity.UploadActivity
 import com.umc.personal.ui.adapter.home.HomeRVAdapter
 import com.umc.personal.ui.viewmodel.HomeViewModel
 
@@ -54,6 +55,12 @@ class HomeFragment : Fragment() {
                 return false
             }
         })
+
+        //upload Activity로 이동
+        binding.addPost.setOnClickListener {
+            val intent = Intent(requireContext(), UploadActivity::class.java)
+            startActivity(intent)
+        }
 
         // query(검색어) 상태 변화시
         viewModel.query.observe(viewLifecycleOwner) {

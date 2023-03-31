@@ -9,8 +9,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.umc.personal.R
-import com.umc.personal.data.dto.home.HomeItem
-import com.umc.personal.data.dto.home.HomeItemDto
+import com.umc.personal.data.dto.home.get.HomeItem
+import com.umc.personal.data.dto.home.get.HomeItemDto
 import com.umc.personal.databinding.ItemHomeBinding
 
 class HomeRVAdapter(private val dataList: HomeItemDto): RecyclerView.Adapter<HomeRVAdapter.DataViewHolder>() {

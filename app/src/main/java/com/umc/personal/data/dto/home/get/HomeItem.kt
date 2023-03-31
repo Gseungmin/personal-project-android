@@ -1,4 +1,4 @@
-package com.umc.personal.data.dto.home
+package com.umc.personal.data.dto.home.get
 
 import com.google.gson.annotations.SerializedName
 
