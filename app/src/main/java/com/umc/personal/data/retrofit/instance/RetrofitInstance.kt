@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.umc.personal.API.LOCAL_BASE_URL
 import com.umc.personal.data.retrofit.api.AccessTokenAPI
 import com.umc.personal.data.retrofit.api.LoginAPI
+import com.umc.personal.data.retrofit.api.SearchAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,5 +35,10 @@ object RetrofitInstance {
     /**token api*/
     val accessTokenAPI: AccessTokenAPI by lazy {
         retrofit.create(AccessTokenAPI::class.java)
+    }
+
+    /**search api*/
+    val searchAPI: SearchAPI by lazy {
+        retrofit.create(SearchAPI::class.java)
     }
 }

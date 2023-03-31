@@ -12,14 +12,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
 import com.umc.personal.R
 import com.umc.personal.data.dto.login.post.BasicJoinDto
 import com.umc.personal.databinding.FragmentJoinBinding
-import com.umc.personal.ui.activity.MainActivity
 import com.umc.personal.ui.viewmodel.JoinViewModel
 import com.umc.personal.util.BlackToast
-import java.util.regex.Pattern
 
 class JoinFragment : Fragment() {
 
@@ -117,9 +114,7 @@ class JoinFragment : Fragment() {
         }
     }
 
-    /**
-     * viewBinding이 더이상 필요 없을 경우 null 처리 필요
-     */
+    //viewBinding이 더이상 필요 없을 경우 null 처리 필요
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
