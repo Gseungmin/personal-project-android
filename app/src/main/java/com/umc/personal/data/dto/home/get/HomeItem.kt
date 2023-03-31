@@ -1,4 +1,4 @@
-package com.umc.personal.data.dto.home
+package com.umc.personal.data.dto.home.get
 
 import com.google.gson.annotations.SerializedName
 
@@ -20,8 +20,6 @@ data class HomeItem(
     val likeCount: Int,
     @SerializedName("commentCount")
     val commentCount: Int,
-    @SerializedName("datetime")
-    val datetime: String,
     @SerializedName("view")
     val view: Int,
 )

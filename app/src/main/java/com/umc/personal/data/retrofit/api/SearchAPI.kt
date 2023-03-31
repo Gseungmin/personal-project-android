@@ -1,6 +1,6 @@
 package com.umc.personal.data.retrofit.api
 
-import com.umc.personal.data.dto.home.HomeItemDto
+import com.umc.personal.data.dto.home.get.HomeItemDto
 import retrofit2.Call
 import retrofit2.http.*
 
