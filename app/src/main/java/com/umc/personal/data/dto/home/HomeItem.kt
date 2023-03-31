@@ -1,29 +1,25 @@
 package com.umc.personal.data.dto.home
 
 import com.google.gson.annotations.SerializedName
+
 /**
- * 목록에서 결재 서류 DTO
- * API 명세서 Check 완료
+ * 프로젝트 목록 DTO
  * */
 data class HomeItem(
-    @SerializedName("documentId")
-    val documentId: Int,
-    @SerializedName("category")
-    val category: Int,
+    @SerializedName("projectId")
+    val projectId: Int,
     @SerializedName("title")
     val title: String,
     @SerializedName("content")
     val content: String,
     @SerializedName("thumbnailImage")
     val thumbnailImage: String,
-    @SerializedName("imageCount")
-    val imageCount: Int,
     @SerializedName("state")
     val state: Int,
-    @SerializedName("approvalCount")
-    val approvalCount: Int,
-    @SerializedName("rejectCount")
-    val rejectCount: Int,
+    @SerializedName("likeCount")
+    val likeCount: Int,
+    @SerializedName("commentCount")
+    val commentCount: Int,
     @SerializedName("datetime")
     val datetime: String,
     @SerializedName("view")
