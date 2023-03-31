@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.umc.personal.API.LOCAL_BASE_URL
 import com.umc.personal.data.retrofit.api.AccessTokenAPI
 import com.umc.personal.data.retrofit.api.LoginAPI
+import com.umc.personal.data.retrofit.api.ProjectAPI
 import com.umc.personal.data.retrofit.api.SearchAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,5 +41,10 @@ object RetrofitInstance {
     /**search api*/
     val searchAPI: SearchAPI by lazy {
         retrofit.create(SearchAPI::class.java)
+    }
+
+    /**upload api*/
+    val projectAPI: ProjectAPI by lazy {
+        retrofit.create(projectAPI::class.java)
     }
 }
