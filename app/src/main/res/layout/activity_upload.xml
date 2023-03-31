@@ -235,19 +235,9 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/write_picture_icon"></ImageButton>
-
-                <TextView
-                    android:id="@+id/tv_image_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="(0/4)"
-                    android:textColor="#8C8C8C"
-                    android:textSize="11sp"></TextView>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
