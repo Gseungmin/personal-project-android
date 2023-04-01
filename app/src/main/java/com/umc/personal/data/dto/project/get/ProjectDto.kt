@@ -30,6 +30,8 @@ data class ProjectDto (
         val view: Int,
         @SerializedName("isLiked")
         val isLiked: Boolean,
+        @SerializedName("isMy")
+        val isMy: Boolean,
         @SerializedName("link")
         val link: OpenGraphDto,
 )

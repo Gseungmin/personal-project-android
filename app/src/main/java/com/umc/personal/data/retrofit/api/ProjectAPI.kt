@@ -37,7 +37,7 @@ interface ProjectAPI {
     @Headers("content-type: application/json")
     fun postComment(@Header("Authorization") accessToken: String, @Body commentPostDto: CommentPostDto): Call<ResponseBody>
 
-    //댓글 목록 API
+    //게시물 API
     @GET("/project/{projectId}")
     @Headers("content-type: application/json")
     fun getProject(@Header("Authorization") accessToken: String, @Path("projectId") projectId: String): Call<ProjectDto>

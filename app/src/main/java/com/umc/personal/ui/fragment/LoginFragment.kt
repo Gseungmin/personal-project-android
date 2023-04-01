@@ -3,9 +3,6 @@ package com.umc.personal.ui.fragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +19,9 @@ import com.umc.personal.API.KAKAO_KEY
 import com.umc.personal.R
 import com.umc.personal.data.dto.login.post.BasicLoginDto
 import com.umc.personal.databinding.FragmentLoginBinding
-import com.umc.personal.ui.activity.LoginActivity
 import com.umc.personal.ui.activity.MainActivity
-import com.umc.personal.ui.viewmodel.JoinViewModel
 import com.umc.personal.ui.viewmodel.LoginViewModel
 import com.umc.personal.util.BlackToast
-import java.util.regex.Pattern
 
 class LoginFragment : Fragment() {
 
