@@ -1,7 +1,7 @@
 package com.umc.personal.data.repository.project
 
-import com.umc.approval.data.dto.comment.get.CommentListDto
-import com.umc.approval.data.dto.comment.post.CommentPostDto
+import com.umc.personal.data.dto.comment.get.CommentListDto
+import com.umc.personal.data.dto.comment.post.CommentPostDto
 import com.umc.personal.data.dto.project.get.ProjectDto
 import com.umc.personal.data.dto.project.get.ReturnLikeDto
 import com.umc.personal.data.retrofit.instance.RetrofitInstance.projectAPI

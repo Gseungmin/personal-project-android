@@ -1,4 +1,4 @@
-package com.umc.approval.data.dto.comment.post
+package com.umc.personal.data.dto.comment.post
 
 import com.google.gson.annotations.SerializedName
 

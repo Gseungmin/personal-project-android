@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.umc.approval.data.dto.comment.post.CommentPostDto
+import com.umc.personal.data.dto.comment.post.CommentPostDto
 import com.umc.personal.R
 import com.umc.personal.databinding.ActivityProjectBinding
 import com.umc.personal.ui.adapter.comment.CommentAdapter

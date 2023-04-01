@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.umc.approval.data.dto.comment.get.CommentListDto
-import com.umc.approval.data.dto.comment.post.CommentPostDto
+import com.umc.personal.data.dto.comment.get.CommentListDto
+import com.umc.personal.data.dto.comment.post.CommentPostDto
 import com.umc.personal.data.dto.project.get.ProjectDto
 import com.umc.personal.data.dto.project.get.ReturnLikeDto
 import com.umc.personal.data.repository.project.ProjectActivityRepository

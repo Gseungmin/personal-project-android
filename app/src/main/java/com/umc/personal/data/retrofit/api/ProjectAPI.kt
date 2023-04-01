@@ -1,7 +1,7 @@
 package com.umc.personal.data.retrofit.api
 
-import com.umc.approval.data.dto.comment.get.CommentListDto
-import com.umc.approval.data.dto.comment.post.CommentPostDto
+import com.umc.personal.data.dto.comment.get.CommentListDto
+import com.umc.personal.data.dto.comment.post.CommentPostDto
 import com.umc.personal.data.dto.home.post.ProjectUploadDto
 import com.umc.personal.data.dto.project.get.ProjectDto
 import com.umc.personal.data.dto.project.get.ReturnLikeDto
@@ -33,7 +33,7 @@ interface ProjectAPI {
     fun getComments(@Path("projectId") projectId: String): Call<CommentListDto>
 
     //댓글 작성 API
-    @POST("/comments")
+    @POST("/upload/comment")
     @Headers("content-type: application/json")
     fun postComment(@Header("Authorization") accessToken: String, @Body commentPostDto: CommentPostDto): Call<ResponseBody>
 
