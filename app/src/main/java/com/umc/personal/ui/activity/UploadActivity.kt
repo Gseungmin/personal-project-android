@@ -456,7 +456,7 @@ class UploadActivity : AppCompatActivity() {
      * */
     private fun S3_connect() {
 
-        val route = viewModel.image.value!!
+        val route = viewModel.image.value!!.split("/")
 
         val realPathFromURI = getRealPathFromURI(viewModel.pic.value!!)
         val file = File(realPathFromURI)
@@ -466,7 +466,7 @@ class UploadActivity : AppCompatActivity() {
             ?.setRegion(Regions.AP_NORTHEAST_2)
             ?.uploadWithTransferUtility(
                 this,
-                "approval-please", file, route
+                "approval-please", file, route.get(route.size-1)
             )
     }
 
