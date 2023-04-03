@@ -34,9 +34,8 @@ class HomeViewModel() : ViewModel() {
     }
 
     //모든 프로젝트 목록을 반환받는 API
-    fun get_all_preject(query: String) = viewModelScope.launch {
-
-        val response = repository.search(query)
+    fun get_all_preject(query: String?="", sort: Int?=0) = viewModelScope.launch {
+        val response = repository.search(query, sort)
         response.enqueue(object : Callback<HomeItemDto> {
             override fun onResponse(call: Call<HomeItemDto>, response: Response<HomeItemDto>) {
                 if (response.isSuccessful) {
