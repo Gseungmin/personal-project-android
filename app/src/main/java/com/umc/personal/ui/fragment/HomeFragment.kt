@@ -90,7 +90,11 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.get_all_preject(viewModel.query.value.toString())
+        if (viewModel.query.value == null) {
+            viewModel.get_all_preject()
+        } else {
+            viewModel.get_all_preject(viewModel.query.value.toString())
+        }
     }
 
     //viewBinding이 더이상 필요 없을 경우 null 처리 필요

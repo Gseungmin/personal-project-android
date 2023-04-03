@@ -10,7 +10,7 @@ import retrofit2.Call
 class HomeFragmentRepository() {
 
     //search API
-    fun search(query: String): Call<HomeItemDto> {
-        return searchAPI.search_projects(query)
+    fun search(query: String?="", sort: Int?=0): Call<HomeItemDto> {
+        return searchAPI.search_projects(query, sort)
     }
 }

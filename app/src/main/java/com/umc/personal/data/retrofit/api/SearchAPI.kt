@@ -9,6 +9,7 @@ interface SearchAPI {
     @GET("/search")
     @Headers("content-type: application/json")
     fun search_projects(
-        @Query("query") query: String,
+        @Query("query") query: String?="",
+        @Query("sort") sort: Int?=0,
     ):Call<HomeItemDto>
 }
